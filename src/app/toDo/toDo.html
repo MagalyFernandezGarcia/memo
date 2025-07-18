@@ -1,12 +1,14 @@
-
-
 <section class="leftSection">
-    <mat-card class="toDoCard">
-        <mat-card-header class="toDoTitle">
-    <mat-card-title >ToDo</mat-card-title>
+  <mat-card class="toDoCard">
+    <mat-card-header class="toDoTitle">
+      <mat-card-title>ToDo</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-    <p>test</p>
+    <mat-card-content class="toDoContent">
+      @for(toDo of toDoList; track toDo.id){
+      <mat-checkbox>
+        <p>{{ toDo.title }}</p>
+      </mat-checkbox>
+      }
     </mat-card-content>
-    </mat-card>
+  </mat-card>
 </section>
