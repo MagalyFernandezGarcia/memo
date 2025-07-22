@@ -1,16 +1,11 @@
-
-
-
-
 <main class="main">
   <h1>Memo</h1>
   <section>
-    <app-toDo ></app-toDo>
+    <app-toDo (openAddForm)="isAddFormOpen = true"></app-toDo>
   </section>
-  
+  <section>
+    <app-add-task-form *ngIf="isAddFormOpen"></app-add-task-form>
+  </section>
 </main>
-
-
-
 
 <router-outlet />

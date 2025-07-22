@@ -1,0 +1,14 @@
+<mat-card class="addTaskFormCard">
+  <mat-card-header>
+    <mat-card-title>Add Task</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="task" (ngSubmit)="addTask()" class="addTaskForm">
+    <mat-form-field>
+      <mat-label>Task</mat-label>
+      <input matInput placeholder="Task" formControlName="task" />
+    </mat-form-field>
+    <mat-card-actions>
+      <button mat-fab class="addBtn">Add</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

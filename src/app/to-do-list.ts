@@ -6,14 +6,26 @@ export interface ToDo {
   done: boolean;
 }
 
+const STORAGE_KEY = 'todo-list';
+let id = 0;
+
 @Injectable({
   providedIn: 'root',
 })
 export class ToDoList {
-  toDoList: ToDo[] = [
-    { id: 1, title: 'test', done: false },
-    { id: 2, title: 'test2', done: false },
-    { id: 3, title: 'test3', done: false },
-    { id: 4, title: 'test4', done: false },
-  ];
+  toDoList: ToDo[] = [];
+  constructor() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    this.toDoList = stored ? JSON.parse(stored) : [];
+  }
+
+  addTask(title: string) {
+    const newTask = {
+      id: id++,
+      title,
+      done: false,
+    };
+    this.toDoList.push(newTask);
+    localStorage.setItem('todo-list', JSON.stringify(this.toDoList));
+  }
 }
