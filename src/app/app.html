@@ -4,7 +4,10 @@
     <app-toDo (openAddForm)="isAddFormOpen = true"></app-toDo>
   </section>
   <section>
-    <app-add-task-form *ngIf="isAddFormOpen"></app-add-task-form>
+    <app-add-task-form
+      *ngIf="isAddFormOpen"
+      (closeAddForm)="isAddFormOpen = false"
+    ></app-add-task-form>
   </section>
 </main>
 

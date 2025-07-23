@@ -25,9 +25,15 @@ export class AddTaskForm {
   });
   constructor(private toDoListService: ToDoList) {}
   addTask() {
-    this.toDoListService.addTask(this.task.value.task ?? '');
+    if (!this.task.value.task) return;
+    this.toDoListService.addTask(this.task.value.task);
     this.task.reset({
       task: '',
     });
+  }
+
+  @Output() closeAddForm = new EventEmitter<void>();
+  handleClick() {
+    this.closeAddForm.emit();
   }
 }

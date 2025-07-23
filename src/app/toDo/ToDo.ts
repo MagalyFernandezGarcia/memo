@@ -22,7 +22,6 @@ export class ToDoComponent {
   @Output() openAddForm = new EventEmitter<void>();
 
   handleClick() {
-    console.log('clicked');
     this.openAddForm.emit();
   }
 }
