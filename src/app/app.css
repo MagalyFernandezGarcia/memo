@@ -1,8 +1,13 @@
-.main{
-    display: flex;
-    flex-direction: column;
-    
-    align-items: center;
-    height: 100vh;
-    
+.main {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  height: 100vh;
+}
+
+.lists {
+  display: flex;
+  gap: 50px;
+  margin-top: 20px;
 }

@@ -3,9 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { ToDo } from '../to-do-list';
-import { ToDoList } from '../to-do-list';
 import { CommonModule } from '@angular/common';
-import { I } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-taskList',
@@ -15,10 +13,15 @@ import { I } from '@angular/cdk/keycodes';
   imports: [MatCardModule, MatCheckboxModule, MatButtonModule, CommonModule],
 })
 export class TaskList {
-  @Input() toDoList: ToDo[] = [];
+  @Input() taskList: ToDo[] = [];
+
   @Output() openAddForm = new EventEmitter<void>();
 
   handleClick() {
     this.openAddForm.emit();
+  }
+
+  toggleDone(toDo: ToDo) {
+    toDo.done = !toDo.done;
   }
 }
