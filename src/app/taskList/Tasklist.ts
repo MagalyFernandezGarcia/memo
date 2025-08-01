@@ -1,8 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Signal,
+} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { ToDo } from '../to-do-list';
+import { ToDo, ToDoService } from '../services/todo.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,16 +19,32 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [MatCardModule, MatCheckboxModule, MatButtonModule, CommonModule],
 })
-export class TaskList {
-  @Input() taskList: ToDo[] = [];
+export class TaskList implements OnInit {
+  taskList!: ToDo[];
 
   @Output() openAddForm = new EventEmitter<void>();
+  constructor(private toDoService: ToDoService) {}
+
+  ngOnInit(): void {
+    this.toDoService.data.subscribe((data) => {
+      this.taskList = data;
+    });
+    this.toDoService.get();
+  }
+
+  doneList(): ToDo[] {
+    return this.taskList.filter((todo) => todo.done);
+  }
+
+  toDoList(): ToDo[] {
+    return this.taskList.filter((todo) => !todo.done);
+  }
 
   handleClick() {
     this.openAddForm.emit();
   }
 
   toggleDone(toDo: ToDo) {
-    toDo.done = !toDo.done;
+    this.toDoService.toggleDone(toDo.id);
   }
 }

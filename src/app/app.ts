@@ -4,8 +4,8 @@ import { RouterOutlet } from '@angular/router';
 import { AddTaskForm } from './addTaskForm/AddTaskForm';
 import { CommonModule } from '@angular/common';
 import { TaskList } from './taskList/Tasklist';
-import { ToDo, ToDoList } from './to-do-list';
-import { Observable } from 'rxjs';
+import { ToDo, ToDoService } from './services/todo.service';
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, AddTaskForm, CommonModule, TaskList],
@@ -14,13 +14,9 @@ import { Observable } from 'rxjs';
 })
 export class App {
   protected readonly title = signal('memo');
-  toDoList: ToDo[] = [];
-  doneList: ToDo[] = [];
+  doneList = signal<ToDo[]>([]);
 
-  constructor(private toDoListService: ToDoList) {
-    this.toDoList = toDoListService.getToDoList();
-    this.doneList = toDoListService.getDoneList();
-  }
+  constructor(private toDoListService: ToDoService) {}
 
   isAddFormOpen = false;
 }

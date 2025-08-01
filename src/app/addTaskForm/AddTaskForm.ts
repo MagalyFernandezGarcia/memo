@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { ToDoList } from '../to-do-list';
+import { ToDoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-add-task-form',
@@ -23,7 +23,7 @@ export class AddTaskForm {
   task = new FormGroup({
     task: new FormControl(''),
   });
-  constructor(private toDoListService: ToDoList) {}
+  constructor(private toDoListService: ToDoService) {}
   addTask() {
     if (!this.task.value.task) return;
     this.toDoListService.addTask(this.task.value.task);
