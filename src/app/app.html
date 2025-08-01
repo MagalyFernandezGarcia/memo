@@ -1,8 +1,10 @@
 <main class="main">
   <h1>Memo</h1>
   <section class="lists">
-    <app-taskList (openAddForm)="isAddFormOpen = true"> To do</app-taskList>
-    <app-taskList>Done</app-taskList>
+    <app-taskList [showDone]="false" (openAddForm)="isAddFormOpen = true">
+      To do</app-taskList
+    >
+    <app-taskList [showDone]="true">Done</app-taskList>
   </section>
   <section>
     <app-add-task-form

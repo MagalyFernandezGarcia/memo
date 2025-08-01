@@ -4,13 +4,13 @@
       <mat-card-title><ng-content></ng-content></mat-card-title>
     </mat-card-header>
     <mat-card-content class="toDoContent">
-      @for (toDo of taskList; track toDo.id) {
-        <mat-checkbox (click)="toggleDone(toDo)">
+      @for (toDo of showDone ? doneList() : toDoList(); track toDo.id) {
+        <mat-checkbox (click)="toggleDone(toDo)" [checked]="toDo.done">
           <p>{{ toDo.title }}</p>
         </mat-checkbox>
       }
     </mat-card-content>
-    <mat-card-actions class="toDoButton">
+    <mat-card-actions class="toDoButton" *ngIf="!showDone">
       <button mat-fab color="primary" (click)="handleClick()">Add</button>
     </mat-card-actions>
   </mat-card>

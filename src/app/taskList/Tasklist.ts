@@ -20,6 +20,8 @@ import { CommonModule } from '@angular/common';
   imports: [MatCardModule, MatCheckboxModule, MatButtonModule, CommonModule],
 })
 export class TaskList implements OnInit {
+  @Input() showDone = false;
+
   taskList!: ToDo[];
 
   @Output() openAddForm = new EventEmitter<void>();
